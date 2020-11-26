@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/firedata/authemail.dart';
+import 'package:shop_app/forgotpass.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/signup_page.dart';
 
@@ -13,23 +17,30 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool remember = false;
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         brightness: Brightness.light,
         backgroundColor: Colors.white,
-        
       ),
-      
-     body: Container(
-       margin: EdgeInsets.only(top:10),
-       
-     height: MediaQuery.of(context).size.height - 10,
+      body: Container(
+        margin: EdgeInsets.only(top: 10),
+        height: MediaQuery.of(context).size.height - 10,
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,8 +54,9 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                         "Login",
                         style: TextStyle(
-                          color: Colors.red,
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                            color: Colors.red,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 20,
@@ -64,9 +76,10 @@ class _LoginPageState extends State<LoginPage> {
                             1.2,
                             Material(
                               elevation: 6,
-                           borderRadius: BorderRadius.circular(28),
-                           shadowColor: Colors.grey[200],
-                                                          child: TextFormField(
+                              borderRadius: BorderRadius.circular(28),
+                              shadowColor: Colors.grey[200],
+                              child: TextFormField(
+                                controller: emailController,
                                 decoration: InputDecoration(
                                     labelText: "Email",
                                     labelStyle: TextStyle(
@@ -80,12 +93,14 @@ class _LoginPageState extends State<LoginPage> {
                                         horizontal: 42, vertical: 20),
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(28),
-                                      borderSide: BorderSide(color: Colors.grey),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey),
                                       gapPadding: 10,
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(28),
-                                      borderSide: BorderSide(color: Colors.grey),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey),
                                       gapPadding: 10,
                                     )),
                               ),
@@ -103,17 +118,19 @@ class _LoginPageState extends State<LoginPage> {
                             )),
                         SizedBox(height: 30),
                         Material(
-                          elevation:6,
-                           borderRadius: BorderRadius.circular(28),
-                           shadowColor: Colors.grey[200],
-                                                  child: TextFormField(
+                          elevation: 6,
+                          borderRadius: BorderRadius.circular(28),
+                          shadowColor: Colors.grey[200],
+                          child: TextFormField(
+                            controller: passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                                 labelText: "Password",
-                                labelStyle:
-                                    TextStyle(color: Colors.black, fontSize: 22),
+                                labelStyle: TextStyle(
+                                    color: Colors.black, fontSize: 22),
                                 hintText: "Enter the password",
-                                suffixIcon: Icon(Icons.lock, color: Colors.grey),
+                                suffixIcon:
+                                    Icon(Icons.lock, color: Colors.grey),
                                 floatingLabelBehavior:
                                     FloatingLabelBehavior.always,
                                 contentPadding: EdgeInsets.symmetric(
@@ -147,17 +164,26 @@ class _LoginPageState extends State<LoginPage> {
                                   TextStyle(color: Colors.black, fontSize: 15),
                             ),
                             Spacer(),
-                            Text("Forget Password?",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 15,
-                                    color: Colors.black))
+                            FlatButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ForgetPasswordpage()));
+                              },
+                              child: Text("Forget Password?",
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      fontSize: 15,
+                                      color: Colors.black)),
+                            )
                           ],
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height:30),
+                  SizedBox(height: 30),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Container(
@@ -166,17 +192,23 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: MaterialButton(
-                        elevation:10,
+                        elevation: 10,
                         minWidth: 320,
                         height: 50,
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen()));
+                          print(emailController.text);
+
+                         logIn(
+                              emailController.text, passwordController.text);
+
+                          // if (isLogin) {
+                          //   Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) => HomeScreen()));
+                          // }
                         },
                         color: Colors.red,
-              
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25)),
                         child: Text(
@@ -192,9 +224,9 @@ class _LoginPageState extends State<LoginPage> {
                   Column(
                     children: <Widget>[
                       Text("Or Sign Up Using",
-                      style: TextStyle(color:Colors.grey[600],fontSize:13)),
+                          style:
+                              TextStyle(color: Colors.grey[600], fontSize: 13)),
                     ],
-
                   ),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     SocalCard(
@@ -218,20 +250,21 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(color: Colors.black),
                       ),
                       GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => SignupPage()));
-                    },
-                    child: Text(
-                      "Sign Up",
-                      style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.red),
-                    ),
-                  ),
-                      
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignupPage()));
+                        },
+                        child: Text(
+                          "Sign Up",
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.red),
+                        ),
+                      ),
                     ],
                   )
                 ],
@@ -240,7 +273,6 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-      
     );
   }
 }
