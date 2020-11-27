@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/forgetpasswordpage.dart';
 import 'package:shop_app/loginpage.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/signup_page.dart';
 import 'package:shop_app/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 void main()  async {

@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/firedata/authemail.dart';
-import 'package:shop_app/forgotpass.dart';
+import 'package:shop_app/forgetpasswordpage.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/signup_page.dart';
 
@@ -164,20 +164,21 @@ class _LoginPageState extends State<LoginPage> {
                                   TextStyle(color: Colors.black, fontSize: 15),
                             ),
                             Spacer(),
-                            FlatButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ForgetPasswordpage()));
-                              },
-                              child: Text("Forget Password?",
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      fontSize: 15,
-                                      color: Colors.black)),
-                            )
+                            
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ForgetPasswordpage()));
+                                },
+                                                              child: Text("Forget Password?",
+                                    style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        fontSize: 15,
+                                        color: Colors.black)),
+                              ),
+                          
                           ],
                         ),
                       ],

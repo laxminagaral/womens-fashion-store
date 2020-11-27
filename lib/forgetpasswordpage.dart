@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/signup_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-import 'FadeAnimation.dart';
+
+
 
 class ForgetPasswordpage extends StatefulWidget {
   @override
@@ -11,59 +14,62 @@ class ForgetPasswordpage extends StatefulWidget {
 }
 
 class _ForgetPasswordpageState extends State<ForgetPasswordpage> {
+  TextEditingController editController=TextEditingController();
   bool remember = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        brightness: Brightness.light,
-        backgroundColor: Colors.white,
-      ),
-      body: Container(
-        margin: EdgeInsets.only(top: 10),
-        height: MediaQuery.of(context).size.height - 10,
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            elevation: 0,
+            brightness: Brightness.light,
+            backgroundColor: Colors.white,
+          ),
+          body: Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 10),
+            
+            
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        "Recover Password",
-                        style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold),
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            "Recover Password",
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Enter Your Email ID to recieve Password reset link",
+                            style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+                          )
+                        ],
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Enter Your Email ID to recieve Password reset link",
-                        style: TextStyle(fontSize: 15, color: Colors.grey[700]),
-                      )
-                    ],
-                  ),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Column(
-                      children: <Widget>[
-                        FadeAnimation(
-                            1.2,
-                            Material(
-                              elevation: 6,
-                              borderRadius: BorderRadius.circular(28),
-                              shadowColor: Colors.grey[200],
-                              child: TextFormField(
+                      SizedBox(height: 55),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        child: Column(
+                          children: <Widget>[
+                  
+                                
+                                Material(
+                                  elevation: 6,
+                                  borderRadius: BorderRadius.circular(28),
+                                  shadowColor: Colors.grey[200],
+                                  child: TextFormField(
+                                    controller: editController,
                                 decoration: InputDecoration(
                                     labelText: "Email",
                                     labelStyle: TextStyle(
@@ -89,18 +95,8 @@ class _ForgetPasswordpageState extends State<ForgetPasswordpage> {
                                     )),
                               ),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: Border(bottom: BorderSide()),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey,
-                                      blurRadius: 1.5,
-                                      spreadRadius: 0.0,
-                                    )
-                                  ]),
-                            )),
-                        SizedBox(height: 5),
+                            
+                        SizedBox(height: 15),
                        ],
                     ),
                   ),
@@ -117,10 +113,7 @@ class _ForgetPasswordpageState extends State<ForgetPasswordpage> {
                         minWidth: 320,
                         height: 50,
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen()));
+                          resetPassword(context);
                         },
                         color: Colors.red,
                         shape: RoundedRectangleBorder(
@@ -143,31 +136,19 @@ class _ForgetPasswordpageState extends State<ForgetPasswordpage> {
       ),
     );
   }
-}
+  void resetPassword(BuildContext context) async{
+    if (editController.text.length==0 || !editController.text.contains("0")) {
+      Fluttertoast.showToast(msg: "enter valid email",
+      textColor:Colors.white);
+      return;
+      
+    }
+    await FirebaseAuth.instance.
+    sendPasswordResetEmail(email: editController.text);
+    Fluttertoast.showToast(msg: "Reset password link has sent your mail please use it to change the password",
+      textColor:Colors.white);
+      Navigator.pop(context);
 
-class SocalCard extends StatelessWidget {
-  const SocalCard({
-    Key key,
-    this.press,
-    this.image,
-  }) : super(key: key);
-  final Function press;
-  final String image;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: press,
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        height: 40,
-        width: 40,
-        decoration: BoxDecoration(
-          color: Color(0xFFF5F6F9),
-          shape: BoxShape.circle,
-        ),
-        child: Image.asset(image),
-      ),
-    );
   }
 }
+

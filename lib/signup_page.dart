@@ -13,7 +13,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  bool remember = false;
+  bool remember = false; 
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -69,6 +69,9 @@ class _SignupPageState extends State<SignupPage> {
                     borderRadius: BorderRadius.circular(28),
                     shadowColor: Colors.grey[200],
                     child: TextFormField(
+                  
+                      
+                      
                       decoration: InputDecoration(
                           labelText: "Name",
                           labelStyle:
