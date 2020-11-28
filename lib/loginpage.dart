@@ -1,8 +1,8 @@
-import 'dart:math';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop_app/firedata/authemail.dart';
+//import 'package:shop_app/firedata/authemail.dart';
 import 'package:shop_app/forgetpasswordpage.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/signup_page.dart';
@@ -199,15 +199,15 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           print(emailController.text);
 
-                         logIn(
-                              emailController.text, passwordController.text);
+                       //  logIn(
+                         //     emailController.text, passwordController.text);
 
                           // if (isLogin) {
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) => HomeScreen()));
-                          // }
+                             Navigator.push(
+                                 context,
+                               MaterialPageRoute(
+                                    builder: (context) => HomeScreen()));
+                        
                         },
                         color: Colors.red,
                         shape: RoundedRectangleBorder(
