@@ -53,6 +53,7 @@ class _SignupPageState extends State<SignupPage> {
                   child: Column(
                     children: <Widget>[
                       Container(
+                        margin: EdgeInsets.only(top:10),
                         padding: EdgeInsets.symmetric(horizontal: 40),
                         width: double.infinity,
                         child: Column(
