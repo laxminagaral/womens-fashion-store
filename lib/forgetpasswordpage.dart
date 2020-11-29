@@ -26,6 +26,12 @@ class _ForgetPasswordpageState extends State<ForgetPasswordpage> {
             elevation: 0,
             brightness: Brightness.light,
             backgroundColor: Colors.white,
+            leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            ),
+            onPressed: () => Navigator.pop(context)),
           ),
           body: Container(
             width: double.infinity,
@@ -137,7 +143,7 @@ class _ForgetPasswordpageState extends State<ForgetPasswordpage> {
     );
   }
   void resetPassword(BuildContext context) async{
-    if (editController.text.length==0 || !editController.text.contains("0")) {
+    if (editController.text.length==0 || !editController.text.contains("@")) {
       Fluttertoast.showToast(msg: "enter valid email",
       textColor:Colors.white);
       return;
