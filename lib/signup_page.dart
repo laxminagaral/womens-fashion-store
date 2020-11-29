@@ -134,7 +134,7 @@ class _SignupPageState extends State<SignupPage> {
                                       //controller: emailController, 
                                       keyboardType: TextInputType.emailAddress,
                                       validator: (item) {
-                                        return item.contains("0")
+                                        return item.contains("@")
                                             ? null
                                             : "Enter valid Email";
                                       },
