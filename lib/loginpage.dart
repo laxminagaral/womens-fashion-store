@@ -1,3 +1,4 @@
+import 'package:edge_alert/edge_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -37,11 +38,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        brightness: Brightness.light,
-        backgroundColor: Colors.white,
-      ),
+      
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
@@ -79,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                                 )
                               ],
                             ),
-                            SizedBox(height: 30),
+                            SizedBox(height: 0),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 40),
                               child: Form(
@@ -140,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                                       child: TextFormField(
                                         keyboardType: TextInputType.text,
                                         validator: (item) {
-                                          return item.length > 8
+                                          return item.length > 7
                                               ? null
                                               : "Password must be 8 characters";
                                         },
@@ -324,6 +321,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
     );
   }
+
+  
     void login() {
     if (formkey.currentState.validate()) {
       setState(() {
@@ -336,7 +335,7 @@ class _LoginPageState extends State<LoginPage> {
         });
 
       
-        Fluttertoast.showToast(msg:"Login Success");
+          EdgeAlert.show(context, title:"Success", description:'You have Logged in Successfully!', gravity: EdgeAlert.BOTTOM, backgroundColor:Colors.green , icon: Icons.check_circle);
         
         Navigator.pushAndRemoveUntil(
             context,
@@ -346,7 +345,9 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           isLoading = false;
         });
-        Fluttertoast.showToast(msg: "error" +onError.toString());
+               EdgeAlert.show(context, title:"Error", description:onError.toString(), gravity: EdgeAlert.BOTTOM, backgroundColor:Colors.red, icon: Icons.error);
+
+        // Fluttertoast.showToast(msg: "error" + onError.toString());
       });
     }
   }
