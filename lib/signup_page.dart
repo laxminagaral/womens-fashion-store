@@ -342,7 +342,7 @@ class _SignupPageState extends State<SignupPage> {
         });
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (_) => HomeScreen()),
+            MaterialPageRoute(builder: (_) => LoginPage()),
             (Route<dynamic> route) => false);
       }).catchError((onError) {
         setState(() {
