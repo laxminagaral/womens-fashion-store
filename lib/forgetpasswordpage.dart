@@ -1,3 +1,4 @@
+import 'package:edge_alert/edge_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
@@ -26,12 +27,6 @@ class _ForgetPasswordpageState extends State<ForgetPasswordpage> {
             elevation: 0,
             brightness: Brightness.light,
             backgroundColor: Colors.white,
-            leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-            onPressed: () => Navigator.pop(context)),
           ),
           body: Container(
             width: double.infinity,
@@ -144,15 +139,17 @@ class _ForgetPasswordpageState extends State<ForgetPasswordpage> {
   }
   void resetPassword(BuildContext context) async{
     if (editController.text.length==0 || !editController.text.contains("@")) {
-      Fluttertoast.showToast(msg: "enter valid email",
-      textColor:Colors.white);
+       EdgeAlert.show(context, title:"Error", description:'Enter Valid Email', gravity: EdgeAlert.BOTTOM, backgroundColor:Colors.red, icon: Icons.error);
+      // Fluttertoast.showToast(msg: "enter valid email",
+      // textColor:Colors.white);
       return;
       
     }
     await FirebaseAuth.instance.
     sendPasswordResetEmail(email: editController.text);
-    Fluttertoast.showToast(msg: "Reset password link has sent your mail please use it to change the password",
-      textColor:Colors.white);
+          EdgeAlert.show(context, title:"Success", description:'Reset password link has sent your mail please use it to change the password', gravity: EdgeAlert.BOTTOM, backgroundColor:Colors.green , icon: Icons.check_circle);
+    // Fluttertoast.showToast(msg: "Reset password link has sent your mail please use it to change the password",
+      // textColor:Colors.white);
       Navigator.pop(context);
 
   }
