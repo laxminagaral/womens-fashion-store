@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_app/FadeAnimation.dart';
@@ -16,6 +17,8 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  var _fireRef = FirebaseDatabase().reference();
+  
   bool remember = false;
   String email, password, name;
   var formkey = GlobalKey<FormState>();
@@ -313,6 +316,7 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   void signup() {
+    
     if (formkey.currentState.validate()) {
       setState(() {
         isLoading = true;
@@ -320,13 +324,18 @@ class _SignupPageState extends State<SignupPage> {
       FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((user) {
-        setState(() {
-          isLoading = false;
-        });
-        Navigator.pushAndRemoveUntil(
+            User u = FirebaseAuth.instance.currentUser;
+            _fireRef.child(u.uid).push().set({
+              "uid": u.uid,
+              "name":name,
+              "email":email
+            }).then((value) => 
+            Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (_) => LoginPage()),
-            (Route<dynamic> route) => false);
+            MaterialPageRoute(builder: (_) => HomeScreen()),
+            (Route<dynamic> route) => false));
+        
+        
       }).catchError((onError) {
         setState(() {
           isLoading = false;

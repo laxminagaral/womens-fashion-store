@@ -56,7 +56,7 @@ class _Body1State extends State<Body1> {
             ),
             IconButton(
               icon: Icon(
-                Icons.logout,
+                Icons.close,
                 color: Colors.black,
               ),
               onPressed: () async {

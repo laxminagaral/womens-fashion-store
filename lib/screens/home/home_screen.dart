@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
         ),
         IconButton(
           icon: Icon(
-            Icons.logout,
+            Icons.close,
             color: Colors.black,
           ),
           onPressed: () async {

@@ -330,6 +330,8 @@ class _LoginPageState extends State<LoginPage> {
       });
       FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password)
       .then((user){
+        
+        
         setState(() {
           isLoading=false;
         });
