@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class Product {
-  final String image, title, description;
+  final String image, title, description,category;
   final int price, size, id;
   final Color color;
   Product({
@@ -14,11 +14,13 @@ class Product {
     this.description,
     this.size,
     this.color,
+    this.category
   });
 }
 
-List<Product> products = [
+List<Product> bags = [
   Product(
+    
       id: 1,
       title: "Women Shoulder Bag ",
       price: 1234,
@@ -114,12 +116,71 @@ List<Product> products = [
       description: "Tulip Handbag,Color-print,Closing-Push Lock NUmber of compartments-1,Product Material-PU",
       image: "assets/images/12.png",
       color: Colors.lightBlue[100]),
-
-
- 
-  
-  
- 
   
 ];
 
+List<Product> jewels =[
+   Product(
+    
+      id: 1,
+      title: "22Kt Purity Gold Pendant",
+      price: 1234,
+      size: 12,
+      description:"New Arrival Fashion Shoulder Bag Women Big Tote Bag Solid Color Messenger Bag Female PU Leather Hnadbag,Decoration-Sequined,Shoulder Bag ,Shape-Causal Tote,Lining Material: Polyster",
+      image: "assets/images/jewel1.png",
+      color: Colors.pink[100]),
+      Product(
+      id: 2,
+      title: "Gold Pendant (22Kt Purity)",
+      price: 1432,
+      size: 12,
+      description: "Made of durable Vegan Leather with an Hd print quality,Adustable Leather shoulder strap,inner polyster lining,Genuine Ykk zip Closure,Two compartments and Zip pocket inside.",
+      image: "assets/images/jewel3.png",
+      color: Colors.blueGrey[100]),
+      
+
+    Product(
+      id: 3,
+      title: "Gold Ring (22Kt Purity) ",
+      price: 999,
+      size: 12,
+      description: "Made of durable Vegan Leather with an Hd print quality,Adustable Leather shoulder strap,inner polyster lining,Genuine Ykk zip Closure,Two compartments and Zip pocket inside.",
+      image: "assets/images/jewel5.png",
+      color: Colors.brown[50]),
+
+      Product(
+      id: 4,
+      title: "Gold Earring (22Kt Purity)",
+      price: 1234,
+      size: 12,
+      description: "Women Denim Blue Shoulder Bag New Design Brand Female Canvas Jeans Tote Handbags Large Vintage Crossbody Travel ,Shoulder Bag Lining Material Polyster,Color:Denim Blue",
+      image: "assets/images/jewel4.png",
+      color: Colors.blueGrey[100]),
+
+      Product(
+      id: 5,
+      title: "Women Shoulder Bag",
+      price: 1234,
+      size: 12,
+      description: "New Arrival Fashion Shoulder Bag Women Big Tote Bag Solid Color Messenger Bag Female PU Leather Hnadbag,Decoration-Sequined,Shoulder Bag ,Shape-Causal Tote,Lining Material: Polyster",
+      image: "assets/images/jewel6.png",
+      color: Colors.lightBlue[100]),
+
+      Product(
+      id: 6,
+      title: "Diamond Pendant From Pride Collection",
+      price: 1234,
+      size: 12,
+      description: "Set In 18 Kt Yellow Gold (2.208 gms) with Certified Diamonds (0.06 Ct)",
+      image: "assets/images/jewel7.png",
+      color: Colors.grey[300]),
+
+      Product(
+      id: 7,
+      title: "Leather Sactchel Bag",
+      price: 1234,
+      size: 12,
+      description: "Beautiful natural Italian leather Satchel/Shoulder bag ,Made from Italian Bovine leather,lightly buffed natural grain,Black matt metal Italian Zip fastener,2 x zipped inside pockets",
+      image: "assets/images/jewel2.png",
+      color: Colors.grey[300]),
+];
