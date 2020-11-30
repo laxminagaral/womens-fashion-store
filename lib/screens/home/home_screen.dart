@@ -1,72 +1,28 @@
+import 'package:edge_alert/edge_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/loginpage.dart';
-import 'package:shop_app/screens/home/components/body.dart';
-import 'package:shop_app/signup_page.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:shop_app/splash_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
+import 'package:shop_app/screens/home/components/body1.dart';
 
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    FirebaseAuth.instance.authStateChanges().listen((firebaseUser) {
-      if(firebaseUser==null){
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=> SplashScreen()),(Route<dynamic>rr)=>false);
-      }else{
-        
-      }
-     });
-  }
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            SizedBox(height: 55),
-            ListTile(
-              contentPadding: EdgeInsets.only(left: 50),
-              leading: Icon(
-                Icons.exit_to_app,
-                color: Colors.red,
-              ),
-              title: GestureDetector(
-                onTap: () async {
-                  FirebaseAuth.instance.signOut().then((onvalue) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => SignupPage()));
-                  });
-                },
-                child: Text(
-                  "Logout",
-                  style: TextStyle(color: Colors.black, fontSize: 25),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-      appBar: buildAppBar(context),
-      body: Body(),
-    );
+    return Body1();
   }
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      iconTheme: IconThemeData(color: Colors.black),
       backgroundColor: Colors.white,
       elevation: 1,
-      //leading: IconButton(icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
-      //highlightColor: Colors.grey[300],
-      //onPressed: ()=> Navigator.pop(context),
-      //),
+      leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.black,
+        ),
+        highlightColor: Colors.red,
+        onPressed: () => Navigator.pop(context),
+      ),
       actions: <Widget>[
         IconButton(
           icon: Icon(
@@ -82,7 +38,29 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           onPressed: () {},
         ),
-        SizedBox(width: 10),
+        IconButton(
+          icon: Icon(
+            Icons.logout,
+            color: Colors.black,
+          ),
+          onPressed: () async {
+            await FirebaseAuth.instance.signOut();
+            FirebaseAuth.instance.authStateChanges().listen((User user) {
+              if (user == null) {
+                EdgeAlert.show(context,
+                    title: "Success",
+                    description: 'You have Logged out Successfully!',
+                    gravity: EdgeAlert.BOTTOM,
+                    backgroundColor: Colors.green,
+                    icon: Icons.check_circle);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (_) => LoginPage()),
+                    (Route<dynamic> route) => false);
+              }
+            });
+          },
+        ),
       ],
     );
   }
