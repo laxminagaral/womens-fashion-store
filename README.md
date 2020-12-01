@@ -1,4 +1,4 @@
-<img src="./Screenshots/mockup.png" width="100%">
+<img src="./Screenshots/mockup.jpg" width="100%">
 
 # Women's fashion store
 
