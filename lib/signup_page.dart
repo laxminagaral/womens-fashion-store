@@ -1,7 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shop_app/FadeAnimation.dart';
 import 'package:shop_app/firedata/authmail.dart';
 //import 'package:shop_app/firedata/authemail.dart';
 import 'package:shop_app/loginpage.dart';
