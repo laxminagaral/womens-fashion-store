@@ -44,7 +44,7 @@ class _CartCounterState extends State<CartCounter> {
       child: OutlineButton(
         padding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(13)),
-        onPressed: press,
+        onPressed:press,
         child: Icon(icon),
         ),
       );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/product.dart';
+import 'package:shop_app/screens/cart_screen.dart';
 import 'package:shop_app/screens/details/components/body.dart';
 
 
@@ -32,14 +33,18 @@ class DetailsScreen extends StatelessWidget {
               Icons.search,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () {
+             
+            },
           ),
           IconButton(
             icon: Icon(
               Icons.shopping_cart,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () {
+              
+            },
           ),
           SizedBox(width:20),
         ]

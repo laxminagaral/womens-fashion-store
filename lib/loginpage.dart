@@ -1,4 +1,5 @@
 import 'package:edge_alert/edge_alert.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,8 +17,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var fireRef = FirebaseDatabase().reference();
   bool remember = false;
   String email, password;
+  
 
   var formkey = GlobalKey<FormState>();
   bool isLoading = false;
@@ -330,19 +333,24 @@ class _LoginPageState extends State<LoginPage> {
       });
       FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password)
       .then((user){
+        User u = FirebaseAuth.instance.currentUser;
+            fireRef.child(u.uid).push().set({
+              "uid": u.uid,
+        
+              "email":email
+            }).then((value) => 
+            Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => HomeScreen()),
+            (Route<dynamic> route) => false));
         
         
-        setState(() {
-          isLoading=false;
-        });
+        
 
       
           EdgeAlert.show(context, title:"Success", description:'You have Logged in Successfully!', gravity: EdgeAlert.BOTTOM, backgroundColor:Colors.green , icon: Icons.check_circle);
         
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (_) => HomeScreen()),
-            (Route<dynamic> route) => false);
+        
       }).catchError((onError) {
         setState(() {
           isLoading = false;
