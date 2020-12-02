@@ -9,6 +9,8 @@ import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/signup_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+
+
 import 'FadeAnimation.dart';
 
 class LoginPage extends StatefulWidget {
@@ -60,8 +62,10 @@ class _LoginPageState extends State<LoginPage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
+                            
                             Column(
                               children: <Widget>[
+                                
                                 Text(
                                   "Login",
                                   style: TextStyle(
