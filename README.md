@@ -8,7 +8,7 @@ It uses Firebase Cloud Firestore as well as the Firebase authentication package 
 
 
 ##### Download APK
-<pre><a href="https://github.com/laxminagaral/womens-fashion-store/raw/master/app.apk">https://github.com/laxminagaral/womens-fashion-store/raw/master/app.apk</a></pre>
+<pre><a href="https://github.com/laxminagaral/womens-fashion-store/raw/master/app-debug.apk">https://github.com/laxminagaral/womens-fashion-store/raw/master/app-debug.apk</a></pre>
 
 ### Demo
 
