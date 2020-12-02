@@ -65,7 +65,6 @@ class _LoginPageState extends State<LoginPage> {
                             
                             Column(
                               children: <Widget>[
-                                
                                 Text(
                                   "Login",
                                   style: TextStyle(
@@ -95,6 +94,9 @@ class _LoginPageState extends State<LoginPage> {
                                       borderRadius: BorderRadius.circular(28),
                                       shadowColor: Colors.grey[200],
                                       child: TextFormField(
+                                        style: TextStyle(
+                                          color:Colors.black,
+                                        ),
                                         keyboardType: TextInputType.emailAddress,
                                         validator: (item) {
                                           return item.contains("@")
@@ -142,6 +144,9 @@ class _LoginPageState extends State<LoginPage> {
                                       borderRadius: BorderRadius.circular(28),
                                       shadowColor: Colors.grey[200],
                                       child: TextFormField(
+                                        style: TextStyle(
+                                          color:Colors.black,
+                                        ),
                                         keyboardType: TextInputType.text,
                                         validator: (item) {
                                           return item.length > 7

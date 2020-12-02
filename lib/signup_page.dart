@@ -86,6 +86,9 @@ class _SignupPageState extends State<SignupPage> {
                                 borderRadius: BorderRadius.circular(28),
                                 shadowColor: Colors.grey[200],
                                 child: TextFormField(
+                                  style: TextStyle(
+                                          color:Colors.black,
+                                        ),
                                   keyboardType: TextInputType.text,
                                   validator: (item) {
                                     return item.length > 0
@@ -128,6 +131,9 @@ class _SignupPageState extends State<SignupPage> {
                                 borderRadius: BorderRadius.circular(28),
                                 shadowColor: Colors.grey[200],
                                 child: TextFormField(
+                                  style: TextStyle(
+                                          color:Colors.black,
+                                        ),
                                   //controller: emailController,
                                   keyboardType: TextInputType.emailAddress,
                                   validator: (item) {
@@ -175,6 +181,9 @@ class _SignupPageState extends State<SignupPage> {
                                 borderRadius: BorderRadius.circular(28),
                                 shadowColor: Colors.grey[200],
                                 child: TextFormField(
+                                  style: TextStyle(
+                                          color:Colors.black,
+                                        ),
                                   //controller: passwordController,
                                   keyboardType: TextInputType.text,
 
